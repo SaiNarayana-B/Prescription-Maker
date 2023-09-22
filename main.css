@@ -21,19 +21,19 @@ h1 {
 }
 
 form {
-  max-width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px;
   background-color: #f9f9f9;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add scale and shadow transition */
 }
 
 form:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02); /* Scale up slightly on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
 }
 
 label {
@@ -43,34 +43,33 @@ label {
 
 #medicineTable {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 30px;
   border-collapse: collapse;
-  overflow-x: auto; /* Enable horizontal scrolling */
 }
 
 #medicineTable th {
   background-color: #007bff;
   color: #fff;
   text-align: left;
-  padding: 12px;
-  font-size: 16px;
+  padding: 15px;
+  font-size: 18px;
   border-bottom: 2px solid #0056b3;
 }
 
 #medicineTable td {
   border: 1px solid #ccc;
-  padding: 12px;
-  font-size: 14px;
+  padding: 15px;
+  font-size: 16px;
 }
 
 #medicineTable .removeMedicine {
   background-color: #ff6b6b;
   color: #fff;
   border: none;
-  padding: 8px 12px;
+  padding: 8px 15px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   transition: background-color 0.3s ease;
 }
 
@@ -80,11 +79,11 @@ label {
   background-color: #4caf50;
   color: #fff;
   border: none;
-  padding: 12px 24px;
-  margin-top: 20px;
+  padding: 15px 30px;
+  margin-top: 30px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   transition: background-color 0.3s ease;
 }
 
@@ -93,41 +92,41 @@ label {
 #clearForm:hover,
 .removeMedicine:hover {
   background-color: #45a049;
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05); /* Add a slight scale-up effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
 }
 
 #invoiceOutput {
-  margin-top: 20px;
-  padding: 12px;
+  margin-top: 30px;
+  padding: 20px;
   background-color: #f9f9f9;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
-  font-size: 16px;
+  font-size: 18px;
   color: #333;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add scale and shadow transition */
 }
 
 #invoiceOutput:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02); /* Scale up slightly on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
 }
 
 /* Responsive design for small screens */
 @media screen and (max-width: 600px) {
   form {
-    padding: 10px;
+    padding: 20px;
   }
 
   #medicineTable th,
   #medicineTable td {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   #addMedicine,
   #generateInvoice,
   #clearForm,
   .removeMedicine {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
