@@ -1,128 +1,134 @@
 /* Reset some default styles */
 body,
-html {
+html,
+h1,
+table {
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #fff;
-  max-width: 800px;
-  margin: 0 auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  font-family: 'Roboto', Arial, sans-serif;
+  background: linear-gradient(to bottom, #f6f6f6, #e0e0e0);
 }
 
 h1 {
   text-align: center;
-  font-size: 28px;
-  margin-bottom: 20px;
+  padding: 20px 0;
   color: #333;
-  text-transform: uppercase;
+  font-size: 36px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add scale and shadow transition */
+}
+
+form:hover {
+  transform: scale(1.02); /* Scale up slightly on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+}
+
+#medicineTable {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+}
+
+#medicineTable th {
+  background-color: #007bff;
+  color: #fff;
+  text-align: left;
+  padding: 15px;
+  font-size: 18px;
+  border-bottom: 2px solid #0056b3;
+}
+
+#medicineTable td {
+  border: 1px solid #ccc;
+  padding: 15px;
+  font-size: 16px;
+}
+
+#medicineTable .removeMedicine {
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#addMedicine,
+#generateInvoice,
+#clearForm {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  margin-top: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+#addMedicine:hover,
+#generateInvoice:hover,
+#clearForm:hover,
+.removeMedicine:hover {
+  background-color: #45a049;
+  transform: scale(1.05); /* Add a slight scale-up effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
 }
 
 #invoiceOutput {
-  background-color: #fff;
-  border: 2px solid #000;
+  margin-top: 30px;
   padding: 20px;
-  border-radius: 10px;
-  margin: 20px 0;
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-#qrCodeContainer {
-  text-align: center;
-  margin-top: 20px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-table, th, td {
-  border: 1px solid #000;
-  padding: 10px;
-}
-
-th {
-  background-color: #f2f2f2;
-  text-align: center;
-  font-weight: bold;
-}
-
-td {
-  text-align: center;
-}
-
-/* Prescription Paper Styles */
-#prescriptionPaper {
-  background-color: #fff;
-  background-image: url('prescription-background.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  border: 2px solid #000;
-  padding: 30px;
-  border-radius: 10px;
-  margin: 20px 0;
-  font-size: 16px;
-  line-height: 1.4;
-  position: relative;
-}
-
-/* Clinic Logo */
-.clinic-logo {
-  position: absolute;
-  top: 60px;
-  left: 30px; /* Adjust the left position to move the logo to the left */
-  width: 120px; /* Adjust the logo size as needed */
-  height: auto;
-}
-
-/* Clinic Name */
-.clinic-name {
-  text-align: center;
-  font-size: 40px;
-  margin-top: 20px;
-  font-weight: bold;
-}
-
-/* Doctor's Information */
-.doctor-info {
-  text-align: center;
+  background-color: #f9f9f9;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
   font-size: 18px;
-  margin-top: 10px;
-  font-style: italic;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add scale and shadow transition */
+}
+
+#invoiceOutput:hover {
+  transform: scale(1.02); /* Scale up slightly on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
 }
 
 /* Responsive design for small screens */
 @media screen and (max-width: 600px) {
-  h1 {
-    font-size: 24px;
-  }
-
-  #invoiceOutput {
-    padding: 15px;
-    font-size: 14px;
-  }
-
-  table {
-    font-size: 14px;
-  }
-
-  /* Responsive prescription paper styles */
-  #prescriptionPaper {
+  form {
     padding: 20px;
-    font-size: 14px;
   }
 
-  /* Adjust the logo position for small screens */
-  .clinic-logo {
-    position: static; /* or any other positioning that fits your design */
-    width: 60px; /* Adjust the logo size for small screens */
-    margin: 0 auto; /* Center the logo horizontally */
+  #medicineTable th,
+  #medicineTable td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #addMedicine,
+  #generateInvoice,
+  #clearForm,
+  .removeMedicine {
+    font-size: 16px;
+    padding: 10px 20px;
   }
 }
