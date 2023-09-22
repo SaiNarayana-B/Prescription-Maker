@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prescription</title>
+  <link rel="stylesheet" type="text/css" href="invoice.css">
+</head>
+<body>
+  <h1>PRESCRIPTION</h1>
+  <div id="invoiceOutput"></div>
+  <div id="qrCodeContainer"></div>
+  <script src="qrcode.min.js"></script>
+  <script>
+    // Function to generate and display the invoice
+    function generateInvoice() {
+      // Retrieve the prescription data from sessionStorage
+      var prescriptionJSON = sessionStorage.getItem("prescriptionData");
+      var prescription = JSON.parse(prescriptionJSON);
+      var patientName = sessionStorage.getItem("patientName");
+
+      // Check if prescription data exists
+      if (!prescription || !patientName) {
+        // Display a message if no prescription data or patient name is found
+        var noPrescriptionMessage = document.createElement("p");
+        noPrescriptionMessage.textContent = "No prescription data found.";
+        document.getElementById("invoiceOutput").appendChild(noPrescriptionMessage);
+      } else {
+        // Display the invoice header
+        var invoiceHeader = document.createElement("h2");
+     
+        document.getElementById("invoiceOutput").appendChild(invoiceHeader);
+
+        // Display the patient's name
+        var patientNamePara = document.createElement("p");
+        patientNamePara.textContent = "Patient's Name: " + patientName;
+        document.getElementById("invoiceOutput").appendChild(patientNamePara);
+
+        // Create a table for displaying medicine details
+        var medicineTable = document.createElement("table");
+        medicineTable.className = "invoiceTable";
+
+        // Create table headers
+        var tableHeader = document.createElement("tr");
+        var medicineNameHeader = document.createElement("th");
+        medicineNameHeader.textContent = "Medicine Name";
+        var morningHeader = document.createElement("th");
+        morningHeader.textContent = "Morning";
+        var afternoonHeader = document.createElement("th");
+        afternoonHeader.textContent = "Afternoon";
+        var nightHeader = document.createElement("th");
+        nightHeader.textContent = "Night";
+
+        tableHeader.appendChild(medicineNameHeader);
+        tableHeader.appendChild(morningHeader);
+        tableHeader.appendChild(afternoonHeader);
+        tableHeader.appendChild(nightHeader);
+        medicineTable.appendChild(tableHeader);
+
+        // Populate the table with medicine details
+        for (var medicineName in prescription) {
+          var medicineData = prescription[medicineName];
+
+          var tableRow = document.createElement("tr");
+          var medicineNameCell = document.createElement("td");
+          medicineNameCell.textContent = medicineName;
+          var morningCell = document.createElement("td");
+          morningCell.textContent = medicineData.M;
+          var afternoonCell = document.createElement("td");
+          afternoonCell.textContent = medicineData.A;
+          var nightCell = document.createElement("td");
+          nightCell.textContent = medicineData.N;
+
+          tableRow.appendChild(medicineNameCell);
+          tableRow.appendChild(morningCell);
+          tableRow.appendChild(afternoonCell);
+          tableRow.appendChild(nightCell);
+
+          medicineTable.appendChild(tableRow);
+        }
+
+        document.getElementById("invoiceOutput").appendChild(medicineTable);
+
+        // Create a QR code with simplified prescription data
+        var simplifiedPrescription = {};
+        for (var medicineName in prescription) {
+          var medicineData = prescription[medicineName];
+          var totalDosage = parseInt(medicineData.M) + parseInt(medicineData.A) + parseInt(medicineData.N);
+          simplifiedPrescription[medicineName] = totalDosage;
+        }
+
+        var qrCodeContainer = document.getElementById("qrCodeContainer");
+        var qrCode = new QRCode(qrCodeContainer, {
+          text: JSON.stringify(simplifiedPrescription), // Use the simplified prescription data for QR code
+          width: 200, // Adjust width for desired size
+          height: 200 // Adjust height for desired size
+        });
+      }
+    }
+
+    // Call the generateInvoice function when the page loads
+    window.onload = generateInvoice;
+  </script>
+</body>
+</html>

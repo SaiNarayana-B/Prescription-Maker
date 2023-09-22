@@ -1,0 +1,43 @@
+/* Base styles for the invoice.html page */
+body {
+  font-family: Arial, sans-serif;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* Styles for the invoice header */
+h1 {
+  text-align: center;
+  font-size: 24px;
+}
+
+/* Styles for the prescription table */
+#invoiceOutput table.invoiceTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#invoiceOutput table.invoiceTable th,
+#invoiceOutput table.invoiceTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+#invoiceOutput table.invoiceTable th {
+  background-color: #f2f2f2;
+}
+
+/* Styles for the QR code container */
+#qrCodeContainer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Additional styles for QR code appearance (customize as needed) */
+.qr-code img {
+  width: 200px; /* Adjust width for desired size */
+  height: 200px; /* Adjust height for desired size */
+  border: 1px solid #ccc;
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prescription Generator</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <h1>PRESCRIPTION</h1>
+  
+  <form id="invoiceForm">
+    <label for="patientName">Patient's Name:</label>
+    <input type="text" id="patientName" required>
+    
+    <table id="medicineTable">
+      <thead>
+        <tr>
+          <th>Medicine Name</th>
+          <th>Morning</th>
+          <th>Afternoon</th>
+          <th>Night</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="medicine">
+          <td><input type="text" class="medicineName" required></td>
+          <td><input type="number" class="morningDosage" min=0 required></td>
+          <td><input type="number" class="noonDosage" min=0 required></td>
+          <td><input type="number" class="nightDosage" min=0 required></td>
+          <td><button type="button" class="removeMedicine">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <button type="button" id="addMedicine">Add Medicine</button>
+    <button type="button" id="generateInvoice">Generate Invoice</button>
+    <button type="button" id="clearForm">Clear</button>
+  </form>
+  
+  <div id="invoiceOutput"></div>
+  
+  <script src="qrcode.min.js"></script>
+ 
+
+<script>
+  // Function to add a new medicine row
+  document.getElementById("addMedicine").addEventListener("click", function() {
+    var medicineTable = document.getElementById("medicineTable").getElementsByTagName('tbody')[0];
+
+    var newRow = document.createElement("tr");
+    newRow.className = "medicine";
+
+    newRow.innerHTML = `
+      <td><input type="text" class="medicineName" required></td>
+      <td><input type="number" class="morningDosage" min=0 required></td>
+      <td><input type="number" class="noonDosage" min=0 required></td>
+      <td><input type="number" class="nightDosage" min=0 required></td>
+      <td><button type="button" class="removeMedicine">Remove</button></td>
+    `;
+
+    medicineTable.appendChild(newRow);
+
+    // Add a click event listener to the newly added "Remove" button
+    newRow.querySelector('.removeMedicine').addEventListener('click', function() {
+      newRow.remove(); // Remove the corresponding row when the button is clicked
+    });
+  });
+
+  // Function to handle form submission and navigate to invoice.html
+  document.getElementById("generateInvoice").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the form from submitting (to stay on the same page)
+
+    var patientName = document.getElementById("patientName").value;
+    var medicines = document.getElementsByClassName("medicine");
+
+    var prescription = {}; // Create an empty object to store medicine details
+
+    for (var i = 0; i < medicines.length; i++) {
+      var medicine = medicines[i];
+      var medicineName = medicine.getElementsByClassName("medicineName")[0].value;
+      var morningDosage = medicine.getElementsByClassName("morningDosage")[0].value;
+      var noonDosage = medicine.getElementsByClassName("noonDosage")[0].value;
+      var nightDosage = medicine.getElementsByClassName("nightDosage")[0].value;
+
+      // Add medicine details to the prescription object
+      prescription[medicineName] = {
+        M: morningDosage,
+        A: noonDosage,
+        N: nightDosage
+      };
+    }
+
+    // Store prescription data in sessionStorage
+    sessionStorage.setItem("patientName", patientName);
+    sessionStorage.setItem("prescriptionData", JSON.stringify(prescription));
+
+    // Redirect to invoice.html
+    window.location.href = "invoice.html";
+  });
+
+  // Function to clear the form
+document.getElementById("clearForm").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the form from submitting (to stay on the same page)
+    
+    // Clear all the input fields in the first row
+    var firstRowInputs = document.querySelectorAll(".medicine:first-child input");
+    firstRowInputs.forEach(function(input) {
+        input.value = "";
+    });
+
+    // Remove all medicine rows except the first one
+    var medicines = document.querySelectorAll(".medicine:not(:first-child)");
+    medicines.forEach(function(medicine) {
+        medicine.remove();
+    });
+
+    // Clear the patientName field
+    document.getElementById("patientName").value = "";
+});
+
+
+
+</script>
+</body>
+</html>

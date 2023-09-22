@@ -1,0 +1,80 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+input[type="text"] {
+  width: 90%;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+input[type="number"] {
+  width: 90%;
+  padding: 5px;
+  margin-top: 5px;
+}
+/* Medicine Table Styles */
+#medicineTable {
+  margin-top: 10px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#medicineTable th,
+#medicineTable td {
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: left;
+}
+
+#medicineTable th {
+  background-color: #f2f2f2;
+}
+
+/* "Add Medicine" Button Styles */
+#addMedicine {
+  margin-top: 10px;
+}
+
+/* Invoice Output Styles */
+#invoiceOutput {
+  display: none;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* Invoice Table Styles (for the generated invoice, if displayed on this page) */
+.invoiceTable {
+  width: 100%;
+}
+
+.invoiceTable th,
+.invoiceTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.invoiceTable th {
+  background-color: #f2f2f2;
+}
+
+/* Styles for the "Remove" button */
+.removeMedicine {
+  background-color: #f44336; /* Red background color */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.removeMedicine:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+
+
