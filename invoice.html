@@ -5,10 +5,22 @@
   <link rel="stylesheet" type="text/css" href="invoice.css">
 </head>
 <body>
-  <h1>PRESCRIPTION</h1>
-  <div id="invoiceOutput"></div>
-  <div id="qrCodeContainer"></div>
+
+  <div id="prescriptionPaper">
+    <img class="clinic-logo" src="logo.png" alt="Clinic Logo"> 
+    <h1 class="clinic-name">SIH SRM CLINIC</h1> 
+    <p class="doctor-info">Dr. Akilabalan</p> 
+
+    <h1>PRESCRIPTION</h1>
+
+    <div id="invoiceOutput"></div>
+    <div id="qrCodeContainer"></div>
+
+  </div>
+
+
   <script src="qrcode.min.js"></script>
+
   <script>
     // Function to generate and display the invoice
     function generateInvoice() {
