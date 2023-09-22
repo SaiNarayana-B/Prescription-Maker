@@ -1,80 +1,132 @@
-/* Global Styles */
+/* Reset some default styles */
+body,
+html,
+h1,
+table {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  padding: 10px;
-  margin-top: 10px;
+  font-family: 'Roboto', Arial, sans-serif;
+  background: linear-gradient(to bottom, #f6f6f6, #e0e0e0);
 }
 
-input[type="text"] {
-  width: 90%;
-  padding: 5px;
-  margin-top: 5px;
+h1 {
+  text-align: center;
+  padding: 20px 0;
+  color: #333;
+  font-size: 36px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-input[type="number"] {
-  width: 90%;
-  padding: 5px;
-  margin-top: 5px;
+form {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add scale and shadow transition */
 }
-/* Medicine Table Styles */
+
+form:hover {
+  transform: scale(1.02); /* Scale up slightly on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+}
+
 #medicineTable {
-  margin-top: 10px;
-  border-collapse: collapse;
   width: 100%;
-}
-
-#medicineTable th,
-#medicineTable td {
-  border: 1px solid #ccc;
-  padding: 5px;
-  text-align: left;
+  margin-top: 30px;
+  border-collapse: collapse;
 }
 
 #medicineTable th {
-  background-color: #f2f2f2;
-}
-
-/* "Add Medicine" Button Styles */
-#addMedicine {
-  margin-top: 10px;
-}
-
-/* Invoice Output Styles */
-#invoiceOutput {
-  display: none;
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
-/* Invoice Table Styles (for the generated invoice, if displayed on this page) */
-.invoiceTable {
-  width: 100%;
-}
-
-.invoiceTable th,
-.invoiceTable td {
-  border: 1px solid #ccc;
-  padding: 8px;
+  background-color: #007bff;
+  color: #fff;
   text-align: left;
+  padding: 15px;
+  font-size: 18px;
+  border-bottom: 2px solid #0056b3;
 }
 
-.invoiceTable th {
-  background-color: #f2f2f2;
+#medicineTable td {
+  border: 1px solid #ccc;
+  padding: 15px;
+  font-size: 16px;
 }
 
-/* Styles for the "Remove" button */
-.removeMedicine {
-  background-color: #f44336; /* Red background color */
-  color: white;
+#medicineTable .removeMedicine {
+  background-color: #ff6b6b;
+  color: #fff;
   border: none;
-  padding: 5px 10px;
+  padding: 8px 15px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
+#addMedicine,
+#generateInvoice,
+#clearForm {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  margin-top: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+#addMedicine:hover,
+#generateInvoice:hover,
+#clearForm:hover,
 .removeMedicine:hover {
-  background-color: #d32f2f; /* Darker red on hover */
+  background-color: #45a049;
+  transform: scale(1.05); /* Add a slight scale-up effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
 }
 
+#invoiceOutput {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  font-size: 18px;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add scale and shadow transition */
+}
 
+#invoiceOutput:hover {
+  transform: scale(1.02); /* Scale up slightly on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
+}
+
+/* Responsive design for small screens */
+@media screen and (max-width: 600px) {
+  form {
+    padding: 20px;
+  }
+
+  #medicineTable th,
+  #medicineTable td {
+    font-size: 14px;
+  }
+
+  #addMedicine,
+  #generateInvoice,
+  #clearForm,
+  .removeMedicine {
+    font-size: 16px;
+  }
+}
