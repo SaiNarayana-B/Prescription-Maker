@@ -61,7 +61,7 @@ td {
 /* Prescription Paper Styles */
 #prescriptionPaper {
   background-color: #fff;
-  background-image: url('prescription-background.jpg'); /* Add a background image */
+  background-image: url('prescription-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   border: 2px solid #000;
@@ -73,21 +73,19 @@ td {
   position: relative;
 }
 
-
-
 /* Clinic Logo */
 .clinic-logo {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 80px; /* Adjust the logo size as needed */
+  top: 60px;
+  left: 30px; /* Adjust the left position to move the logo to the left */
+  width: 120px; /* Adjust the logo size as needed */
   height: auto;
 }
 
 /* Clinic Name */
 .clinic-name {
   text-align: center;
-  font-size: 20px;
+  font-size: 40px;
   margin-top: 20px;
   font-weight: bold;
 }
@@ -95,7 +93,7 @@ td {
 /* Doctor's Information */
 .doctor-info {
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 10px;
   font-style: italic;
 }
@@ -119,5 +117,12 @@ td {
   #prescriptionPaper {
     padding: 20px;
     font-size: 14px;
+  }
+
+  /* Adjust the logo position for small screens */
+  .clinic-logo {
+    position: static; /* or any other positioning that fits your design */
+    width: 60px; /* Adjust the logo size for small screens */
+    margin: 0 auto; /* Center the logo horizontally */
   }
 }
