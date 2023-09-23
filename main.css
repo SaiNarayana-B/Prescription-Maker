@@ -141,17 +141,19 @@ label {
     margin-top: 10px;
   }
 
-  /* Align inputs and buttons according to their column heading */
+  /* Arrange medicine name and dosage fields in one row horizontally */
   .medicine {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start; /* Align inputs and buttons to the left */
+    justify-content: space-between; /* Distribute elements evenly */
     align-items: center; /* Center elements vertically */
   }
 
-  /* Adjust margin and width for dosage input fields */
-  .medicine td {
-    margin: 5px; /* Add some spacing between input fields */
-    width: calc(33.33% - 10px); /* Distribute inputs evenly within a row */
+  /* Adjust margin and width for medicine name and dosage input fields */
+  .medicine select,
+  .medicine input {
+    margin: 5px; /* Add some spacing between elements */
+    width: calc(25% - 10px); /* Distribute elements evenly within a row */
   }
 }
+
