@@ -112,16 +112,24 @@ label {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
 }
 
-/* Responsive design for small screens */
+
 /* Responsive design for small screens */
 @media screen and (max-width: 600px) {
   form {
     padding: 20px;
+    overflow-x: auto; /* Add horizontal scrolling for small screens */
   }
 
   #medicineTable th,
   #medicineTable td {
     font-size: 14px;
+    padding: 10px; /* Adjust cell padding for smaller screens */
+  }
+
+  .morningDosage,
+  .noonDosage,
+  .nightDosage {
+    width: 100%; /* Make dosage input fields full width on small screens */
   }
 
   #addMedicine,
@@ -130,10 +138,18 @@ label {
   .removeMedicine {
     font-size: 16px;
     padding: 10px 20px; /* Adjust button padding for smaller screens */
+    width: 100%; /* Make buttons full width on small screens */
   }
-  
-  label {
-    font-size: 16px; /* Increase label font size for better readability */
+
+  .removeMedicine {
+    margin-top: 10px; /* Add space between Remove buttons on small screens */
+  }
+
+  .medicine {
+    display: flex;
+    flex-wrap: wrap; /* Make medicine rows flex containers */
+    justify-content: space-between; /* Distribute elements evenly */
+    align-items: center; /* Center elements vertically */
   }
 }
 
