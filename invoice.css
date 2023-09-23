@@ -92,11 +92,37 @@ td {
 
 /* Doctor's Information */
 .doctor-info {
+  
   text-align: center;
   font-size: 18px;
   margin-top: 10px;
   font-style: italic;
 }
+
+/* "Save as PDF" button */
+#save-as-pdf {
+  display: block;
+  margin: 20px auto; /* Center the button horizontally and provide spacing from the prescription container */
+  padding: 10px 20px; /* Add some padding for a neat appearance */
+  background-color: #007BFF; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Hover effect for the button */
+#save-as-pdf:hover {
+  background-color: #0056b3; /* Hover background color */
+}
+
+@media print {
+  #save-as-pdf {
+    display: none;
+  }
+}
+  
 
 /* Responsive design for small screens */
 @media screen and (max-width: 600px) {
