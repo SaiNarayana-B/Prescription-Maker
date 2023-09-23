@@ -16,17 +16,17 @@ h1 {
   text-align: center;
   padding: 20px 0;
   color: #333;
-  font-size: 36px;
+  font-size: 28px; /* Decrease the font size for mobile */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 form {
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 30px;
+  padding: 15px; /* Decrease padding for mobile */
   background-color: #f9f9f9;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
+  border-radius: 12px; /* Decrease border-radius for mobile */
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add scale and shadow transition */
 }
@@ -43,7 +43,7 @@ label {
 
 #medicineTable {
   width: 100%;
-  margin-top: 30px;
+  margin-top: 20px; /* Decrease margin for mobile */
   border-collapse: collapse;
 }
 
@@ -51,25 +51,25 @@ label {
   background-color: #007bff;
   color: #fff;
   text-align: left;
-  padding: 15px;
-  font-size: 18px;
+  padding: 10px; /* Decrease padding for mobile */
+  font-size: 16px; /* Decrease font size for mobile */
   border-bottom: 2px solid #0056b3;
 }
 
 #medicineTable td {
   border: 1px solid #ccc;
-  padding: 15px;
-  font-size: 16px;
+  padding: 10px; /* Decrease padding for mobile */
+  font-size: 14px; /* Decrease font size for mobile */
 }
 
 #medicineTable .removeMedicine {
   background-color: #ff6b6b;
   color: #fff;
   border: none;
-  padding: 8px 15px;
+  padding: 8px 12px; /* Decrease padding for mobile */
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px; /* Decrease font size for mobile */
   transition: background-color 0.3s ease;
 }
 
@@ -79,11 +79,11 @@ label {
   background-color: #4caf50;
   color: #fff;
   border: none;
-  padding: 15px 30px;
-  margin-top: 30px;
+  padding: 12px 20px; /* Decrease padding for mobile */
+  margin-top: 20px; /* Decrease margin for mobile */
   border-radius: 5px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   transition: background-color 0.3s ease;
 }
 
@@ -97,12 +97,12 @@ label {
 }
 
 #invoiceOutput {
-  margin-top: 30px;
-  padding: 20px;
+  margin-top: 20px; /* Decrease margin for mobile */
+  padding: 15px; /* Decrease padding for mobile */
   background-color: #f9f9f9;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
-  font-size: 18px;
+  border-radius: 12px; /* Decrease border-radius for mobile */
+  font-size: 16px; /* Decrease font size for mobile */
   color: #333;
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add scale and shadow transition */
 }
@@ -115,18 +115,21 @@ label {
 /* Responsive design for small screens */
 @media screen and (max-width: 600px) {
   form {
-    padding: 20px;
+    padding: 10px; /* Decrease padding further for smaller screens */
   }
 
   #medicineTable th,
   #medicineTable td {
-    font-size: 14px;
+    font-size: 12px; /* Decrease font size further for smaller screens */
+    padding: 8px; /* Decrease padding further for smaller screens */
   }
 
   #addMedicine,
   #generateInvoice,
   #clearForm,
   .removeMedicine {
-    font-size: 16px;
+    font-size: 14px; /* Decrease font size further for smaller screens */
+    padding: 10px 15px; /* Decrease padding further for smaller screens */
+    margin-top: 10px; /* Decrease margin further for smaller screens */
   }
 }
