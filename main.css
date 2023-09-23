@@ -113,6 +113,7 @@ label {
 }
 
 /* Responsive design for small screens */
+/* Responsive design for small screens */
 @media screen and (max-width: 600px) {
   form {
     padding: 20px;
@@ -128,5 +129,11 @@ label {
   #clearForm,
   .removeMedicine {
     font-size: 16px;
+    padding: 10px 20px; /* Adjust button padding for smaller screens */
+  }
+  
+  label {
+    font-size: 16px; /* Increase label font size for better readability */
   }
 }
+
