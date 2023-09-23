@@ -116,22 +116,8 @@ label {
 @media screen and (max-width: 600px) {
   form {
     padding: 20px;
+    max-width: 100%; /* Make the form container full width on small screens */
     overflow-x: auto; /* Add horizontal scrollbar if content overflows */
-    max-width: 100%; /* Make the form container full width on small screens */
-  }
-
-  #medicineTable th,
-  #medicineTable td {
-    font-size: 14px;
-    padding: 10px;
-  }
-
-/* Responsive design for small screens */
-@media screen and (max-width: 600px) {
-  form {
-    padding: 20px;
-    max-width: 100%; /* Make the form container full width on small screens */
-    overflow-x: scroll; /* Add horizontal scrollbar if content overflows */
   }
 
   #medicineTable th,
@@ -154,6 +140,13 @@ label {
     flex: 1; /* Expand elements to fill available space */
   }
 
+  /* Adjust margin and width for medicine name and dosage input fields */
+  .medicine select,
+  .medicine input {
+    margin: 5px; /* Add some spacing between elements */
+    width: calc(33.33% - 10px); /* Distribute elements evenly within a row */
+  }
+
   .removeMedicine {
     margin-top: 10px;
   }
@@ -166,3 +159,4 @@ label {
     align-items: center; /* Center elements vertically */
   }
 }
+
