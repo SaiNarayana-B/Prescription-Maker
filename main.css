@@ -126,6 +126,20 @@ label {
     padding: 10px;
   }
 
+/* Responsive design for small screens */
+@media screen and (max-width: 600px) {
+  form {
+    padding: 20px;
+    max-width: 100%; /* Make the form container full width on small screens */
+    overflow-x: scroll; /* Add horizontal scrollbar if content overflows */
+  }
+
+  #medicineTable th,
+  #medicineTable td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
   /* Make dosage input fields and buttons full width on small screens */
   .morningDosage,
   .noonDosage,
@@ -133,8 +147,11 @@ label {
   #addMedicine,
   #generateInvoice,
   #clearForm,
-  .removeMedicine {
-    width: 100%;
+  .removeMedicine,
+  .medicineName {
+    width: calc(25% - 10px); /* Distribute elements evenly within a row */
+    margin-right: 10px; /* Add spacing between elements */
+    flex: 1; /* Expand elements to fill available space */
   }
 
   .removeMedicine {
@@ -147,12 +164,5 @@ label {
     flex-wrap: wrap;
     justify-content: flex-start; /* Align elements to the left */
     align-items: center; /* Center elements vertically */
-  }
-
-  /* Adjust margin and width for medicine name and dosage input fields */
-  .medicine select,
-  .medicine input {
-    margin: 5px; /* Add some spacing between elements */
-    width: calc(33.33% - 10px); /* Distribute elements evenly within a row */
   }
 }
