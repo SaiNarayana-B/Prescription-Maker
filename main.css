@@ -112,12 +112,12 @@ label {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
 }
 
-
 /* Responsive design for small screens */
 @media screen and (max-width: 600px) {
   form {
     padding: 20px;
     overflow-x: auto;
+    max-width: 100%; /* Make the form container full width on small screens */
   }
 
   #medicineTable th,
@@ -156,4 +156,3 @@ label {
     width: calc(25% - 10px); /* Distribute elements evenly within a row */
   }
 }
-
