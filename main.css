@@ -116,7 +116,7 @@ label {
 @media screen and (max-width: 600px) {
   form {
     padding: 20px;
-    overflow-x: auto;
+    overflow-x: auto; /* Add horizontal scrollbar if content overflows */
     max-width: 100%; /* Make the form container full width on small screens */
   }
 
@@ -145,7 +145,7 @@ label {
   .medicine {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Distribute elements evenly */
+    justify-content: flex-start; /* Align elements to the left */
     align-items: center; /* Center elements vertically */
   }
 
@@ -153,6 +153,6 @@ label {
   .medicine select,
   .medicine input {
     margin: 5px; /* Add some spacing between elements */
-    width: calc(25% - 10px); /* Distribute elements evenly within a row */
+    width: calc(33.33% - 10px); /* Distribute elements evenly within a row */
   }
 }
