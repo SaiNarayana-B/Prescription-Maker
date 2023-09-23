@@ -4,6 +4,7 @@
   <title>Prescription Generator</title>
   <link rel="stylesheet" type="text/css" href="main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
   <h1>PRESCRIPTION</h1>
@@ -24,16 +25,10 @@
       </thead>
       <tbody>
         <tr class="medicine">
-          <td>
-            <select class="medicineName" required>
-              <option value="" disabled selected>Select a Medicine</option>
-              <!-- Use JavaScript to populate the options from the JSON data -->
-            </select>
-          </td>
-            <input type="number" class="morningDosage" min="0" required inputmode="numeric">
-            <input type="number" class="noonDosage" min="0" required inputmode="numeric">
-            <input type="number" class="nightDosage" min="0" required inputmode="numeric">
-
+          <td><input type="text" class="medicineName" required></td>
+          <td><input type="number" class="morningDosage" min=0 required></td>
+          <td><input type="number" class="noonDosage" min=0 required></td>
+          <td><input type="number" class="nightDosage" min=0 required></td>
           <td><button type="button" class="removeMedicine">Remove</button></td>
         </tr>
       </tbody>
@@ -47,156 +42,86 @@
   <div id="invoiceOutput"></div>
   
   <script src="qrcode.min.js"></script>
-  <script>
-    // Medicine data in JSON format
-    var medicineData = {
-      "medicines": [
-        {
-          "id": 1,
-          "name": "Abhayarishta"
-        },
-        {
-          "id": 2,
-          "name": "Ashvagandharishta"
-        },
-        {
-          "id": 3,
-          "name": "Balarishta"
-        },
-        {
-          "id": 4,
-          "name": "Chandanasava"
-        },
-        {
-          "id": 5,
-          "name": "Dashamularishta"
-        },
-        {
-          "id": 6,
-          "name": "Kutajarishta"
-        },
-        {
-          "id": 7,
-          "name": "Lohasava"
-        },
-        {
-          "id": 8,
-          "name": "Pippalyadyasava"
-        },
-        {
-          "id": 9,
-          "name": "Ushirasava"
-        },
-        {
-          "id": 10,
-          "name": "Arka Pudina"
-        },
-        {
-          "id": 11,
-          "name": "Kutajavaleha"
-        }
-      ]
-    };
+ 
 
-    // Function to populate the medicine dropdown options
-    function populateMedicineDropdown(container) {
-      var medicineDropdown = container.querySelector('.medicineName');
-      var medicines = medicineData.medicines;
+<script>
+  // Function to add a new medicine row
+  document.getElementById("addMedicine").addEventListener("click", function() {
+    var medicineTable = document.getElementById("medicineTable").getElementsByTagName('tbody')[0];
 
-      medicines.forEach(function (medicine) {
-        var option = document.createElement('option');
-        option.value = medicine.name;
-        option.textContent = `${medicine.id}. ${medicine.name}`;
-        medicineDropdown.appendChild(option);
-      });
+    var newRow = document.createElement("tr");
+    newRow.className = "medicine";
+
+    newRow.innerHTML = `
+      <td><input type="text" class="medicineName" required></td>
+      <td><input type="number" class="morningDosage" min=0 required></td>
+      <td><input type="number" class="noonDosage" min=0 required></td>
+      <td><input type="number" class="nightDosage" min=0 required></td>
+      <td><button type="button" class="removeMedicine">Remove</button></td>
+    `;
+
+    medicineTable.appendChild(newRow);
+
+    // Add a click event listener to the newly added "Remove" button
+    newRow.querySelector('.removeMedicine').addEventListener('click', function() {
+      newRow.remove(); // Remove the corresponding row when the button is clicked
+    });
+  });
+
+  // Function to handle form submission and navigate to invoice.html
+  document.getElementById("generateInvoice").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the form from submitting (to stay on the same page)
+
+    var patientName = document.getElementById("patientName").value;
+    var medicines = document.getElementsByClassName("medicine");
+
+    var prescription = {}; // Create an empty object to store medicine details
+
+    for (var i = 0; i < medicines.length; i++) {
+      var medicine = medicines[i];
+      var medicineName = medicine.getElementsByClassName("medicineName")[0].value;
+      var morningDosage = medicine.getElementsByClassName("morningDosage")[0].value;
+      var noonDosage = medicine.getElementsByClassName("noonDosage")[0].value;
+      var nightDosage = medicine.getElementsByClassName("nightDosage")[0].value;
+
+      // Add medicine details to the prescription object
+      prescription[medicineName] = {
+        M: morningDosage,
+        A: noonDosage,
+        N: nightDosage
+      };
     }
 
-    // Call the function to populate the initial medicine dropdown
-    populateMedicineDropdown(document.querySelector('.medicine'));
+    // Store prescription data in sessionStorage
+    sessionStorage.setItem("patientName", patientName);
+    sessionStorage.setItem("prescriptionData", JSON.stringify(prescription));
 
-    // Function to add a new medicine row
-    document.getElementById("addMedicine").addEventListener("click", function() {
-      var medicineTable = document.getElementById("medicineTable").getElementsByTagName('tbody')[0];
+    // Redirect to invoice.html
+    window.location.href = "invoice.html";
+  });
 
-      var newRow = document.createElement("tr");
-      newRow.className = "medicine";
-
-      newRow.innerHTML = `
-        <td>
-          <select class="medicineName" required>
-            <option value="" disabled selected>Select a Medicine</option>
-            <!-- Use JavaScript to populate the options from the JSON data -->
-          </select>
-        </td>
-        <td><input type="number" class="morningDosage" min="0" required></td>
-        <td><input type="number" class="noonDosage" min="0" required></td>
-        <td><input type="number" class="nightDosage" min="0" required></td>
-        <td><button type="button" class="removeMedicine">Remove</button></td>
-      `;
-
-      medicineTable.appendChild(newRow);
-
-      // Populate the newly added medicine dropdown options
-      populateMedicineDropdown(newRow);
-
-      // Add a click event listener to the newly added "Remove" button
-      newRow.querySelector('.removeMedicine').addEventListener('click', function() {
-        newRow.remove(); // Remove the corresponding row when the button is clicked
-      });
-    });
-
-    // Function to handle form submission and navigate to invoice.html
-    document.getElementById("generateInvoice").addEventListener("click", function(event) {
-      event.preventDefault(); // Prevent the form from submitting (to stay on the same page)
-
-      var patientName = document.getElementById("patientName").value;
-      var medicines = document.getElementsByClassName("medicine");
-
-      var prescription = {}; // Create an empty object to store medicine details
-
-      for (var i = 0; i < medicines.length; i++) {
-        var medicine = medicines[i];
-        var medicineName = medicine.getElementsByClassName("medicineName")[0].value;
-        var morningDosage = medicine.getElementsByClassName("morningDosage")[0].value;
-        var noonDosage = medicine.getElementsByClassName("noonDosage")[0].value;
-        var nightDosage = medicine.getElementsByClassName("nightDosage")[0].value;
-
-        // Add medicine details to the prescription object
-        prescription[medicineName] = {
-          M: morningDosage,
-          A: noonDosage,
-          N: nightDosage
-        };
-      }
-
-      // Store prescription data in sessionStorage
-      sessionStorage.setItem("patientName", patientName);
-      sessionStorage.setItem("prescriptionData", JSON.stringify(prescription));
-
-      // Redirect to invoice.html
-      window.location.href = "invoice.html";
-    });
-
-    // Function to clear the form
-    document.getElementById("clearForm").addEventListener("click", function(event) {
-      event.preventDefault(); // Prevent the form from submitting (to stay on the same page)
-
-      // Clear all the input fields in the first row
-      var firstRowInputs = document.querySelectorAll(".medicine:first-child input");
-      firstRowInputs.forEach(function(input) {
+  // Function to clear the form
+document.getElementById("clearForm").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the form from submitting (to stay on the same page)
+    
+    // Clear all the input fields in the first row
+    var firstRowInputs = document.querySelectorAll(".medicine:first-child input");
+    firstRowInputs.forEach(function(input) {
         input.value = "";
-      });
-
-      // Remove all medicine rows except the first one
-      var medicines = document.querySelectorAll(".medicine:not(:first-child)");
-      medicines.forEach(function(medicine) {
-        medicine.remove();
-      });
-
-      // Clear the patientName field
-      document.getElementById("patientName").value = "";
     });
 
-  </script>
+    // Remove all medicine rows except the first one
+    var medicines = document.querySelectorAll(".medicine:not(:first-child)");
+    medicines.forEach(function(medicine) {
+        medicine.remove();
+    });
+
+    // Clear the patientName field
+    document.getElementById("patientName").value = "";
+});
+
+
+
+</script>
 </body>
 </html>
