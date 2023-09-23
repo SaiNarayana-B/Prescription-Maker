@@ -23,6 +23,56 @@
   <script src="qrcode.min.js"></script>
 
   <script>
+    // Medicine data in JSON format
+    var medicineData = {
+      "medicines": [
+        {
+          "id": 1,
+          "name": "Abhayarishta"
+        },
+        {
+          "id": 2,
+          "name": "Ashvagandharishta"
+        },
+        {
+          "id": 3,
+          "name": "Balarishta"
+        },
+        {
+          "id": 4,
+          "name": "Chandanasava"
+        },
+        {
+          "id": 5,
+          "name": "Dashamularishta"
+        },
+        {
+          "id": 6,
+          "name": "Kutajarishta"
+        },
+        {
+          "id": 7,
+          "name": "Lohasava"
+        },
+        {
+          "id": 8,
+          "name": "Pippalyadyasava"
+        },
+        {
+          "id": 9,
+          "name": "Ushirasava"
+        },
+        {
+          "id": 10,
+          "name": "Arka Pudina"
+        },
+        {
+          "id": 11,
+          "name": "Kutajavaleha"
+        }
+      ]
+    };
+
     // Function to generate and display the invoice
     function generateInvoice() {
       // Retrieve the prescription data from sessionStorage
@@ -87,12 +137,13 @@
 
         document.getElementById("invoiceOutput").appendChild(medicineTable);
 
-        // Create a QR code with simplified prescription data
+        // Create a QR code with medicine ID and total quantity
         var simplifiedPrescription = {};
         for (var medicineName in prescription) {
           var medicineData = prescription[medicineName];
-          var totalDosage = parseInt(medicineData.M) + parseInt(medicineData.A) + parseInt(medicineData.N);
-          simplifiedPrescription[medicineName] = totalDosage;
+          var medicineID = getMedicineIDByName(medicineName);
+          var totalQuantity = parseInt(medicineData.M) + parseInt(medicineData.A) + parseInt(medicineData.N);
+          simplifiedPrescription[medicineID] = totalQuantity;
         }
 
         var qrCodeContainer = document.getElementById("qrCodeContainer");
@@ -102,6 +153,17 @@
           height: 150 // Adjust height for desired size
         });
       }
+    }
+
+    // Function to get medicine ID by name
+    function getMedicineIDByName(medicineName) {
+      var medicines = medicineData.medicines;
+      for (var i = 0; i < medicines.length; i++) {
+        if (medicines[i].name === medicineName) {
+          return medicines[i].id;
+        }
+      }
+      return null; // Return null if medicine name is not found
     }
 
     // Call the generateInvoice function when the page loads
