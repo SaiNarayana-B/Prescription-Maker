@@ -117,39 +117,41 @@ label {
 @media screen and (max-width: 600px) {
   form {
     padding: 20px;
-    overflow-x: auto; /* Add horizontal scrolling for small screens */
+    overflow-x: auto;
   }
 
   #medicineTable th,
   #medicineTable td {
     font-size: 14px;
-    padding: 10px; /* Adjust cell padding for smaller screens */
+    padding: 10px;
   }
 
+  /* Make dosage input fields and buttons full width on small screens */
   .morningDosage,
   .noonDosage,
-  .nightDosage {
-    width: 100%; /* Make dosage input fields full width on small screens */
-  }
-
+  .nightDosage,
   #addMedicine,
   #generateInvoice,
   #clearForm,
   .removeMedicine {
-    font-size: 16px;
-    padding: 10px 20px; /* Adjust button padding for smaller screens */
-    width: 100%; /* Make buttons full width on small screens */
+    width: 100%;
   }
 
   .removeMedicine {
-    margin-top: 10px; /* Add space between Remove buttons on small screens */
+    margin-top: 10px;
   }
 
+  /* Align inputs and buttons according to their column heading */
   .medicine {
     display: flex;
-    flex-wrap: wrap; /* Make medicine rows flex containers */
-    justify-content: space-between; /* Distribute elements evenly */
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align inputs and buttons to the left */
     align-items: center; /* Center elements vertically */
   }
-}
 
+  /* Adjust margin and width for dosage input fields */
+  .medicine td {
+    margin: 5px; /* Add some spacing between input fields */
+    width: calc(33.33% - 10px); /* Distribute inputs evenly within a row */
+  }
+}
