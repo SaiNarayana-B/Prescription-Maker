@@ -16,8 +16,9 @@
     <div id="invoiceOutput"></div>
     <div id="qrCodeContainer"></div>
 
+    <!-- "Save as PDF" button -->
+    <button id="save-as-pdf">Save as PDF</button>
   </div>
-
 
   <script src="qrcode.min.js"></script>
 
@@ -38,13 +39,8 @@
       } else {
         // Display the invoice header
         var invoiceHeader = document.createElement("h2");
-     
+        invoiceHeader.textContent = "Patient Name: " + patientName;
         document.getElementById("invoiceOutput").appendChild(invoiceHeader);
-
-        // Display the patient's name
-        var patientNamePara = document.createElement("p");
-        patientNamePara.textContent = "Patient's Name: " + patientName;
-        document.getElementById("invoiceOutput").appendChild(patientNamePara);
 
         // Create a table for displaying medicine details
         var medicineTable = document.createElement("table");
@@ -110,6 +106,31 @@
 
     // Call the generateInvoice function when the page loads
     window.onload = generateInvoice;
+
+    // Add "Save as PDF" functionality
+    document.getElementById('save-as-pdf').addEventListener('click', function() {
+      // Disable the button to prevent multiple clicks
+      this.disabled = true;
+
+      // Set the print media type to 'print' to ensure proper rendering
+      const originalMediaType = document.body.style.media;
+      document.body.style.media = 'print';
+
+      // Hide the button when printing
+      this.style.display = 'none';
+
+      // Trigger the browser's print dialog
+      window.print();
+
+      // Reset the media type, show the button, and enable the button after printing is done
+      setTimeout(function() {
+        document.body.style.media = originalMediaType;
+        document.getElementById('save-as-pdf').style.display = 'block';
+        document.getElementById('save-as-pdf').disabled = false;
+      }, 1000); // Adjust the delay as needed
+    });
   </script>
+  
+
 </body>
 </html>
