@@ -111,3 +111,34 @@ label {
   transform: scale(1.02); /* Scale up slightly on hover */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
 }
+
+/* Style the select element */
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+/* Style the dropdown arrow */
+select::after {
+  content: '\25BC'; /* Unicode character for a down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 18px;
+}
+
+/* Change styles on select hover and focus */
+select:hover,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
