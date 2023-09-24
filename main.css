@@ -142,3 +142,15 @@ select:focus {
   outline: none;
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
+
+/* Style the option elements on hover */
+select:hover option {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Style the selected option */
+select option:checked {
+  background-color: #007bff;
+  color: #fff;
+}
