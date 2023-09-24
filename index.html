@@ -5,6 +5,18 @@
   <link rel="stylesheet" type="text/css" href="main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function(registration) {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch(function(error) {
+        console.error('Service Worker registration failed:', error);
+      });
+  }
+</script>
+
 <body>
   <h1>PRESCRIPTION</h1>
   
@@ -195,6 +207,8 @@
       // Clear the patientName field
       document.getElementById("patientName").value = "";
     });
+
+    
 
   </script>
 </body>
